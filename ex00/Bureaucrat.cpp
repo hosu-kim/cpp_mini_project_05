@@ -7,6 +7,7 @@ Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name) {
 	if (grade < 1)
 	// throw가 실행되는 순간, 그 함수는 중단됩니다. 그리고 이 에러를 받아줄
 	// catch 블록을 찾을 때까지 상위 함수로 거슬러 올라갑니다.
+	// and exception class's constructor is executed.
 		throw Bureaucrat::GradeTooHighException();
 	if (grade > 150)
 		throw Bureaucrat::GradeTooLowException();
@@ -17,6 +18,8 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other): _name(other._name), _grade(othe
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
+	// Self-assignment Guard
+	// 
 	if (this != &other) {
 		_grade = other._grade;
 	}
@@ -41,6 +44,7 @@ void Bureaucrat::decrementGrade() {
 	_grade++;
 }
 
+// throw(): 예외 메시지를 가져오는 이 함수는 절대로 예외를 던지지 않겠다.
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
 	return "Grade is too high!";
 }
