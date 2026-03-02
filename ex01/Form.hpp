@@ -3,7 +3,7 @@
 
 #include "Bureaucrat.hpp"
 
-class Form {
+class AForm {
 	private:
 		const std::string	_name;
 		bool				_isSigned;
@@ -12,11 +12,11 @@ class Form {
 
 	public:
 		// Orthodox canonical form
-		Form();
-		Form(std::string name, int gradeToSign, int gradeToExecute);
-		Form(const Form& other);
-		Form& operator=(const Form& other);
-		~Form();
+		AForm();
+		AForm(std::string name, int gradeToSign, int gradeToExecute);
+		AForm(const AForm& other);
+		AForm& operator=(const AForm& other);
+		~AForm();
 
 		// Getters
 		std::string getName() const;
@@ -37,6 +37,6 @@ class Form {
 		};
 };
 
-std::ostream& operator<<(std::ostream& os, const Form& f);
+std::ostream& operator<<(std::ostream& os, const AForm& f);
 
 #endif
