@@ -1,32 +1,43 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
-int main() {
+int	main() {
+	// Normal signing case
 	try {
-		Bureaucrat b1("Top Officer", 1);
-		std::cout << b1 << std::endl;
+		std::cout << "--- Test 1: Normal Sign ---" << std::endl;
+		Bureaucrat boss("The Boss", 1);
+		Form f1("Top Secret Document", 10, 20);
 
-		b1.decrementGrade();
-		std::cout << "After decrement: " << b1 << std::endl;
+		std::cout << f1 << std::endl;
+		boss.signForm(f1);
+		std::cout << f1 << std::endl;
 	} catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
 
-	std::cout << "-------------------" << std::endl;
+	std::cout << "\n------------------------------\n" << std::endl;
 
+	// refusal case
 	try {
-		Bureaucrat b2("The God", 0);
+		std::cout << "--- Test 2: Grade Too Low to Sign ---" << std::endl;
+		Bureaucrat intern("The Intern", 150);
+		Form f2("Important paper", 50, 50);
+
+		std::cout << f2 << std::endl;
+		intern.signForm(f2);
+		std::cout << f2 << std::endl;
 	} catch (std::exception &e) {
-		std::cerr << "Cause expected exception: " << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
-	std::cout << "-------------------" << std::endl;
+	// making an error
+	std::cout << "\n------------------------------\n" << std::endl;
 
 	try {
-		Bureaucrat b3("Worker", 150);
-		std::cout << b3 << std::endl;
-		b3.decrementGrade();
+		std::cout << "--- Test 3: Invalid Form Creation ---" << std::endl;
+		Form f3("Impossible Form", 0, 151);
 	} catch (std::exception &e) {
-		std::cerr << "Caught expected exception: " << e.what() << std::endl;
+		std::cerr << "Caught exception: " << e.what() << std::endl;
 	}
 
 	return 0;

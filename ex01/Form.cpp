@@ -1,9 +1,10 @@
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 Form::Form(): _name("default"), _isSigned(false), _gradeToSign(150), _gradeToExecute(150) {}
 
-Form::Form(std::string name, int isSigned, int gradeToSign, int gradeToExecute)
-	: _name(name), _isSigned(isSigned), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
+Form::Form(std::string name, int gradeToSign, int gradeToExecute)
+	: _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
 	if (_gradeToSign < 1 || _gradeToExecute < 1)
 		throw Form::GradeTooHighException();
 	if (_gradeToSign > 150 || _gradeToExecute > 150)
@@ -27,19 +28,29 @@ Form& Form::operator=(const Form& other) {
 Form::~Form() {}
 
 // Getters
-std::string Form::getName() const { return _name; }
+std::string	Form::getName() const { return _name; }
 bool		Form::getIsSigned() const { return _isSigned; }
 int			Form::getGradeToSign() const { return _gradeToSign; }
 int			Form::getGradeToExecute() const { return _gradeToExecute; }
 
+void		Form::beSigned(const Bureaucrat& b) {
+	if (b.getGrade() > _gradeToSign) {
+		throw Form::GradeTooLowException();
+	}
+	_isSigned = true;
+}
+
 const char*	Form::GradeTooHighException::what() const throw() {
-	return "Grade is too high!";
+	return "Form grade is too high!";
 }
 
-const char* Form::GradeTooLowException::what() const throw() {
-	return "Grade is too low!";
+const char*	Form::GradeTooLowException::what() const throw() {
+	return "Form grade is too low!";
 }
 
-std::ostream operator<<(std::ostream& os, const Form& f) {
-	os << f.getName
+std::ostream&	operator<<(std::ostream& os, const Form& f) {
+	os << "Form [" << f.getName() << "], signed: " << (f.getIsSigned() ? "Yes" : "No")
+	   << ", sign grade: " << f.getGradeToSign()
+	   << ", execute grade: " << f.getGradeToExecute();
+	return os;
 }

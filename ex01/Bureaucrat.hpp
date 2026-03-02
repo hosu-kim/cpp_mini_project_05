@@ -4,6 +4,8 @@
 # include <string>
 # include <iostream>
 
+class Form; // Forward Declaration
+
 class Bureaucrat {
 	private:
 		const std::string _name;
@@ -23,7 +25,7 @@ class Bureaucrat {
 		void	incrementGrade();
 		void	decrementGrade();
 
-		int	signForm();
+		void	signForm(Form& f);
 
 		class GradeTooHighException: public std::exception {
 			public:

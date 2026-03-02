@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+# include "Form.hpp"
 
 Bureaucrat::Bureaucrat(): _name("default"), _grade(150) {}
 
@@ -17,7 +18,7 @@ Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name) {
 Bureaucrat::Bureaucrat(const Bureaucrat& other): _name(other._name), _grade(other._grade) {
 }
 
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
+Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& other) {
 	// Self-assignment Guard
 	// 
 	if (this != &other) {
@@ -29,31 +30,41 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 Bureaucrat::~Bureaucrat() {}
 
 // Getters
-const std::string Bureaucrat::getName() const { return _name; }
-int Bureaucrat::getGrade() const { return _grade; }
+const	std::string Bureaucrat::getName() const { return _name; }
+int	Bureaucrat::getGrade() const { return _grade; }
 
-void Bureaucrat::incrementGrade() {
+void	Bureaucrat::incrementGrade() {
 	if (_grade - 1 < 1)
 		throw Bureaucrat::GradeTooHighException();
 	_grade--;
 }
 
-void Bureaucrat::decrementGrade() {
+void	Bureaucrat::decrementGrade() {
 	if (_grade + 1 > 150)
 		throw Bureaucrat::GradeTooLowException();
 	_grade++;
 }
 
+void	Bureaucrat::signForm(Form& f) {
+	try {
+		f.beSigned(*this);
+		std::cout << this->_name << " signed " << f.getName() << std::endl;
+	} catch (const std::exception& e) {
+		std::cout << this->_name << " couldn't sign " << f.getName()
+		          << " because " << e.what() << std::endl;
+	}
+}
+
 // throw(): 예외 메시지를 가져오는 이 함수는 절대로 예외를 던지지 않겠다.
-const char* Bureaucrat::GradeTooHighException::what() const throw() {
+const char*	Bureaucrat::GradeTooHighException::what() const throw() {
 	return "Grade is too high!";
 }
 
-const char* Bureaucrat::GradeTooLowException::what() const throw() {
+const char*	Bureaucrat::GradeTooLowException::what() const throw() {
 	return "Grade is too low!";
 }
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& b) {
+std::ostream&	operator<<(std::ostream& os, const Bureaucrat& b) {
 	os << b.getName() << ", bureaucrat grade " << b.getGrade() << ".";
 	return os;
 }
