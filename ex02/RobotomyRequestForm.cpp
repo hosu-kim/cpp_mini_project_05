@@ -1,7 +1,10 @@
 #include "RobotomyRequestForm.hpp"
 
+// Robotomy: 사이보그화
+
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
 	: AForm("RobotomyRequestForm", target, 72, 45) {}
+	// AFrom(_name, _target, _gradeToSign, _gradeToExecute)
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
 	: AForm(other) {}
@@ -15,10 +18,12 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
+// member function
 void	RobotomyRequestForm::execute(Bureaucrat const & executor) const {
 	this->checkExecutable(executor);
 	std::cout << "Vrrrzzzzzzzzzzzz!" << std::endl;
 
+	// rand()는 무작위 정수를 생성하는 함수
 	if (std::rand() % 2 == 0) {
 		std::cout << this->getTarget() << " has been robotomized successfully!" << std::endl;
 	} else {

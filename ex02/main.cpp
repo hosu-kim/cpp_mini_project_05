@@ -12,6 +12,7 @@ int main() {
 	Bureaucrat manager("Manager", 40);
 	Bureaucrat intern("Intern", 150);
 
+	// 관목 생성
 	std::cout << "\n--- [ TEST 1: Shrubbery Creation ] ---\n" << std::endl;
 	{
 		ShrubberyCreationForm shrub("home");
@@ -23,6 +24,7 @@ int main() {
 
 	std::cout << "\n--- [ TEST 2: Robotomy Request ] ---\n" << std::endl;
 	{
+		// Bender: 퓨처라마에 나오는 로봇 캐릭터
 		RobotomyRequestForm robot("Bender");
 		president.signForm(robot);
 		president.executeForm(robot);

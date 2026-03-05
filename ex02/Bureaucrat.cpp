@@ -1,13 +1,13 @@
 #include "Bureaucrat.hpp"
-# include "AForm.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(): _name("default"), _grade(150) {}
 
 // const 멤버 변수는 초기화 리스트에서만 초기화 가능
 Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name) {
 	if (grade < 1)
-	// throw가 실행되는 순간, 그 함수는 중단됩니다. 그리고 이 에러를 받아줄
-	// catch 블록을 찾을 때까지 상위 함수로 거슬러 올라갑니다.
+	// throw가 실행되면 그 함수는 중단되고 이 에러를 받아줄
+	// catch 블록을 찾을 때까지 상위 함수로 거슬러 올라간다.
 	// and exception class's constructor is executed.
 		throw Bureaucrat::GradeTooHighException();
 	if (grade > 150)
@@ -15,9 +15,11 @@ Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name) {
 	_grade = grade;
 }
 
+// copy constructor
 Bureaucrat::Bureaucrat(const Bureaucrat& other): _name(other._name), _grade(other._grade) {
 }
 
+// copy assignment operator
 Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& other) {
 	// Self-assignment Guard
 	// 
@@ -33,12 +35,14 @@ Bureaucrat::~Bureaucrat() {}
 const	std::string Bureaucrat::getName() const { return _name; }
 int	Bureaucrat::getGrade() const { return _grade; }
 
+// 등급을 1단계 증가시킨다.
 void	Bureaucrat::incrementGrade() {
 	if (_grade - 1 < 1)
 		throw Bureaucrat::GradeTooHighException();
 	_grade--;
 }
 
+// 등급을 1단계 감소시킨다.
 void	Bureaucrat::decrementGrade() {
 	if (_grade + 1 > 150)
 		throw Bureaucrat::GradeTooLowException();
