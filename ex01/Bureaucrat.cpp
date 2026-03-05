@@ -45,6 +45,7 @@ void	Bureaucrat::decrementGrade() {
 	_grade++;
 }
 
+// newly added by the ex01
 void	Bureaucrat::signForm(AForm& f) {
 	try {
 		f.beSigned(*this);

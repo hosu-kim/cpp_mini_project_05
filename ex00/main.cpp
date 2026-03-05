@@ -16,7 +16,7 @@ int main() {
 	try {
 		Bureaucrat b2("The God", 0);
 	} catch (std::exception &e) {
-		std::cerr << "Cause expected exception: " << e.what() << std::endl;
+		std::cerr << "Caught expected exception: " << e.what() << std::endl;
 	}
 
 	std::cout << "-------------------" << std::endl;

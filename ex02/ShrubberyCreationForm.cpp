@@ -20,6 +20,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {}
 // member function
 // 함수 이름 끝의 const는 이 함수가 속한 객체의 상태를 바꾸지 않겠다는 약속임.
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
+	// checkExecutable is in the AForm.
 	this->checkExecutable(executor);
 
 	std::string		filename = this->getTarget() + "_shrubbery";

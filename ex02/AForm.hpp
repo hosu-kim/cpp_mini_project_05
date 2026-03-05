@@ -2,6 +2,7 @@
 # define FORM_HPP
 
 # include <exception>
+# include <string>
 
 class Bureaucrat;
 
@@ -30,6 +31,7 @@ class AForm {
 
 		void			beSigned(const Bureaucrat& b);
 
+		// newly added by the ex02
 		virtual void	execute(Bureaucrat const & executor) const = 0;
 
 		void			checkExecutable(Bureaucrat const & executor) const;

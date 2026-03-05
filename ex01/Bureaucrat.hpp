@@ -29,7 +29,8 @@ class Bureaucrat {
 
 		class GradeTooHighException: public std::exception {
 			public:
-				// 자식에서 부모의 함수를 재정의했을 때 자식이 수정한 버전이 실행되게 한다.
+				// virtual: 자식에서 부모의 함수를 재정의했을 때 
+				// 자식이 수정한 버전이 실행되게 한다.
 				virtual const char* what() const throw();
 		};
 		class GradeTooLowException: public std::exception {
