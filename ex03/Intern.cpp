@@ -1,5 +1,19 @@
 #include "Intern.hpp"
 
+// private functions
+AForm*	Intern::createShrubbery(std::string target) {
+	return new ShrubberyCreationForm(target);
+}
+
+AForm*	Intern::createRobotomy(std::string target) {
+	return new RobotomyRequestForm(target);
+}
+
+AForm*	Intern::createPresidential(std::string target) {
+	return new PresidentialPardonForm(target);
+}
+
+// public fuctions
 Intern::Intern() {}
 
 Intern::Intern(const Intern& other){
@@ -37,14 +51,3 @@ AForm*	Intern::makeForm(std::string formName, std::string target) {
 	return NULL;
 }
 
-AForm*	Intern::createShrubbery(std::string target) {
-	return new ShrubberyCreationForm(target);
-}
-
-AForm*	Intern::createRobotomy(std::string target) {
-	return new RobotomyRequestForm(target);
-}
-
-AForm*	Intern::createPresidential(std::string target) {
-	return new PresidentialPardonForm(target);
-}
