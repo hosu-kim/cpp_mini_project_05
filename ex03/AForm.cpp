@@ -12,12 +12,10 @@ AForm::AForm(std::string name, std::string target, int gradeToSign, int gradeToE
 		throw AForm::GradeTooLowException();
 }
 
-// copy constructor
 AForm::AForm(const AForm& other)
 	: _name(other._name), _isSigned(other._isSigned),
 	  _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute) {}
 
-// copy assignment operator
 AForm& AForm::operator=(const AForm& other) {
 	if (this != &other) {
 		_isSigned = other._isSigned;

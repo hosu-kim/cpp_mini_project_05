@@ -2,9 +2,9 @@
 # define ROBOTOMYREQUESTFORM_HPP
 
 # include "AForm.hpp"
+# include <iostream>
 # include <cstdlib> // rand(), srand()
 # include <ctime> // time()
-# include <iostream>
 
 class RobotomyRequestForm : public AForm {
 	public:
@@ -13,7 +13,6 @@ class RobotomyRequestForm : public AForm {
 		RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
 		virtual ~RobotomyRequestForm();
 
-		// member funciton
 		virtual void	execute(Bureaucrat const & executor) const;
 };
 
