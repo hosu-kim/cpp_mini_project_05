@@ -2,6 +2,9 @@
 
 // Robotomy: 사이보그화
 
+RobotomyRequestForm::RobotomyRequestForm()
+	: AForm("RobotomyRequestForm", "defalt_target", 72, 45) {}
+
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
 	: AForm("RobotomyRequestForm", target, 72, 45) {}
 	// AFrom(_name, _target, _gradeToSign, _gradeToExecute)
